@@ -56,7 +56,7 @@ export class TemplateComponent implements OnInit {
 
   addAction(action: string) {
     if(this.toCalculate.indexOf('+') == -1 && this.toCalculate.indexOf('-') == -1 && this.toCalculate.indexOf('/') == -1 && this.toCalculate.indexOf('x') == -1){
-      this.actual.valOne= parseInt(this.toCalculate)
+      this.actual.valOne= parseFloat(this.toCalculate)
       switch(action){
         case '+':
           this.actual.action = '+';
@@ -84,19 +84,58 @@ export class TemplateComponent implements OnInit {
 
   checkResult() {
     if(this.secondVal != "") {
-      this.actual.valTwo = parseInt(this.secondVal);
+      var result = 0;
+      this.actual.valTwo = parseFloat(this.secondVal);
+      switch(this.actual.action){
+        case '+':
+          result = (this.actual.valOne + this.actual.valTwo);
+          console.log(result)
+          break;
+          case '-':
+            result = (this.actual.valOne - this.actual.valTwo);
+            console.log(result)
+          break; 
+          case '/':
+            result = (this.actual.valOne / this.actual.valTwo);
+            console.log(result)
+          break;
+          case 'x':
+            result = (this.actual.valOne * this.actual.valTwo);
+            console.log(result)
+          break;
+      }
       this.store.dispatch(new AddCalAction( {
         id: this.id,
         valOne: this.actual.valOne,
         valTwo: this.actual.valTwo,
         action: this.actual.action,
-        Result: (this.actual.valOne + this.actual.valTwo)
+        Result: result
       }))
       this.id++; 
-      this.toCalculate = (this.actual.valOne + this.actual.valTwo) + "";
+      this.toCalculate = result + "";
       this.actual.action = "+";
-      this.actual.valOne =  (this.actual.valOne + this.actual.valTwo);
+      this.actual.valOne =  result;
+      this.actual.valTwo = 0;
+      this.secondVal = ""
     }
     
+  }
+
+  intToPor(): void {
+    if(this.toCalculate != "") {
+      console.log(this.actual.valOne)
+      if(this.actual.valOne == 0) {
+        if(this.toCalculate.indexOf('+') == -1 && this.toCalculate.indexOf('-') == -1 && this.toCalculate.indexOf('/') == -1 && this.toCalculate.indexOf('x') == -1){
+          var porcentage = (parseFloat(this.toCalculate)/100);
+          this.toCalculate = porcentage + ""
+        }
+      }
+      else {
+        
+        var porcentage = parseFloat(this.secondVal)/100;
+        this.secondVal = porcentage + ""
+        this.toCalculate = this.actual.valOne + this.actual.action + porcentage +""
+      }
+    }
   }
 }
