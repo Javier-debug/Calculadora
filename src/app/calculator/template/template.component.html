@@ -1,27 +1,26 @@
 <div class="calculadora">
   <div class="output">
-      <div><label id="calculo" style="width: 600px; height: 55px; border-style: solid; background-color: white; text-align: right; background-color: white; font-size: 40px;"  type="text"></label></div>
-      <div><label id="Resultado" style="width: 600px; height: 55px; border-style: solid; background-color: white; text-align: right; font-size: 20px; background-color: white; font-size: 40px;" type="text"></label></div>
+      {{ toCalculate }}
     </div>
-    <button  value="1" class="botones"><h1>1</h1></button>
-    <button  value="2" class="botones"><h1>2</h1></button>
-    <button  value="3" class="botones"><h1>3</h1></button>
-    <button  class="operadores"><h1>+</h1></button>
+    <button (click)="addNumber('1')" value="1" class="botones"><h1>1</h1></button>
+    <button  (click)="addNumber('2')" value="2" class="botones"><h1>2</h1></button>
+    <button (click)="addNumber('3')" value="3" class="botones"><h1>3</h1></button>
+    <button (click)="addAction('+')" class="operadores"><h1>+</h1></button>
     <button  class="operadores"><h1>%</h1></button>
     
-  <button  value="4" class="botones"><h1>4</h1></button>
-  <button  value="5" class="botones"><h1>5</h1></button>
-  <button  value="6" class="botones"><h1>6</h1></button>
-  <button  class="operadores"><h1>-</h1></button>
-  <button  class="tresRenglones operadores"><h1>=</h1></button>
+  <button (click)="addNumber('4')" value="4" class="botones"><h1>4</h1></button>
+  <button (click)="addNumber('5')"  value="5" class="botones"><h1>5</h1></button>
+  <button (click)="addNumber('6')" value="6" class="botones"><h1>6</h1></button>
+  <button (click)="addAction('-')" class="operadores"><h1>-</h1></button>
+  <button (click)="checkResult()" class="tresRenglones operadores"><h1>=</h1></button>
 
-  <button  value="7"  class="botones"><h1>7</h1></button>
-  <button  value="8"  class="botones"><h1>8</h1></button>
-  <button  value="9"  class="botones"><h1>9</h1></button>
-  <button  class="operadores"><h1>/</h1></button>
-  <button  class="botones"><h1>.</h1></button>
-  <button value="0"  class="botones"><h1>0</h1></button>
-  <button   class="borrar"><h1>CE</h1></button>
-  <button   class="operadores"><h1>X</h1></button>
+  <button (click)="addNumber('7')" value="7"  class="botones"><h1>7</h1></button>
+  <button (click)="addNumber('8')" value="8"  class="botones"><h1>8</h1></button>
+  <button (click)="addNumber('9')" value="9"  class="botones"><h1>9</h1></button>
+  <button (click)="addAction('/')" class="operadores"><h1>/</h1></button>
+  <button (click)="addNumber('.')" class="botones"><h1>.</h1></button>
+  <button (click)="addNumber('0')" value="0"  class="botones"><h1>0</h1></button>
+  <button  (click)="dropActual()" class="borrar"><h1>CE</h1></button>
+  <button (click)="addAction('x')" class="operadores"><h1>X</h1></button>
 
 </div>
